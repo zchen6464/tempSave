@@ -8,7 +8,8 @@ public class ZombieBenaviour : MonoBehaviour
     public GameObject player;
     private Health health;
     public float damage;
-    public float countdown = (float).5;
+    public float damageDelay = (float).5;
+    private float countdown;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,7 @@ public class ZombieBenaviour : MonoBehaviour
         countdown -= Time.deltaTime;
         if (countdown <= 0)
         {
-            countdown = (float).5;
+            countdown = damageDelay;
 
             if (other.GetComponent<Health>() != null)
             {
@@ -39,5 +40,6 @@ public class ZombieBenaviour : MonoBehaviour
     void Update()
     {
         agent.SetDestination(player.transform.position);
+        countdown = damageDelay;
     }
 }
